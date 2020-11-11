@@ -1,4 +1,4 @@
-package ru.ruslasib.training.selenium;
+package test.java.ru.ruslasib;
 
 import org.junit.After;
 import org.junit.Before;
