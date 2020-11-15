@@ -4,8 +4,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +19,13 @@ public class LoginTests {
 
   @Before
   public void start() {
-    driver = new ChromeDriver();
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability("unhandledPromptBehavior", "dismiss and notify");
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("start-maximized");
+    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+    driver = new InternetExplorerDriver(capabilities);
+    System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
