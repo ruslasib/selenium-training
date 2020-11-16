@@ -10,8 +10,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -60,6 +62,25 @@ public class StartBrowsersExamples {
     // а вот этот код для Edge не сработал. Путь до драйвера был прописан в PATH
     // для Chrome и Firefox похожий код сработал без явного указания пути до драйвера
     // driver = new EdgeDriver();
+    doSomething();
+  }
+
+  // TODO неверный конструктор для инициализации драйвера
+  @Test
+  public void launchFireFoxNightly() {
+    DesiredCapabilities caps = new DesiredCapabilities();
+    // MARIONETTE можно явно не указывать, тогда он по умолчанию станет true
+    caps.setCapability(FirefoxDriver.MARIONETTE, true);
+    driver = new FirefoxDriver(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")),
+            new FirefoxProfile(), caps);
+  }
+
+  // запуск Firefox (на примере v45 ESR) "по старой схеме"
+  @Test
+  public void launchFirefox45ESR() {
+    DesiredCapabilities caps = new DesiredCapabilities();
+    caps.setCapability(FirefoxDriver.MARIONETTE, false);
+    driver = new FirefoxDriver(caps);
     doSomething();
   }
 
