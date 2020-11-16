@@ -22,7 +22,7 @@ public class StartBrowsersExamples {
 
   // Предпочтительно путь до драйвера прописывать в переменных окружения PATH
   @Test
-  public void startChrome() {
+  public void launchChrome() {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("strictFileInteractability", true);
     ChromeOptions options = new ChromeOptions();
@@ -39,21 +39,21 @@ public class StartBrowsersExamples {
 
   // Путь до драйвера можно положить куда угодно на диск, указав путь до него явно в коде
   @Test
-  public void startChromeWhenDriverSomewhereInOS() {
+  public void launchChromeWhenDriverSomewhereInOS() {
     System.setProperty("webdriver.chrome.driver", "d:\\Software_testing\\Distrib\\chromedriver.exe");
     driver = new ChromeDriver();
     doSomething();
   }
 
   @Test
-  public void startFirefox() {
+  public void launchFirefox() {
     FirefoxOptions options = new FirefoxOptions();
     options.addArguments();driver = new FirefoxDriver(options);
     doSomething();
   }
 
   @Test
-  public void startEdge() {
+  public void launchEdge() {
     // у меня браузер Edge запустился только, когда явно указан путь до веб драйвера
     driver = new EdgeDriver(new EdgeDriverService.Builder()
             .usingDriverExecutable(new File("C:\\Tools\\msedgedriver.exe")).build());
