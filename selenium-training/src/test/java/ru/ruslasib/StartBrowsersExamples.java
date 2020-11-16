@@ -13,7 +13,6 @@ import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -65,14 +64,13 @@ public class StartBrowsersExamples {
     doSomething();
   }
 
-  // TODO неверный конструктор для инициализации драйвера
   @Test
-  public void launchFireFoxNightly() {
+  public void launchFirefoxNightly() {
     DesiredCapabilities caps = new DesiredCapabilities();
-    // MARIONETTE можно явно не указывать, тогда он по умолчанию станет true
-    caps.setCapability(FirefoxDriver.MARIONETTE, true);
-    driver = new FirefoxDriver(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")),
-            new FirefoxProfile(), caps);
+    FirefoxOptions options = new FirefoxOptions();
+    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
+    driver = new FirefoxDriver(options);
+    doSomething();
   }
 
   // запуск Firefox (на примере v45 ESR) "по старой схеме"
