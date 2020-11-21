@@ -14,11 +14,9 @@ public class LoginTests extends TestBase {
 
   @Test
   public void testLogin() {
-    String login = "admin";
-    String password = "admin";
     driver.get("http://localhost/litecart/admin/login.php/");
-    driver.findElement(By.name("username")).sendKeys(login);
-    driver.findElement(By.name("password")).sendKeys(password);
+    driver.findElement(By.name("username")).sendKeys("admin");
+    driver.findElement(By.name("password")).sendKeys("admin");
     driver.findElement(By.cssSelector("button[name=login]")).click();
     WebElement mainPageTitle = wait.until(presenceOfElementLocated(By.id("platform")));
     assertThat(mainPageTitle.getText(), containsString("LiteCart"));
