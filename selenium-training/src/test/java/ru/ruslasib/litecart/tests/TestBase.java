@@ -16,6 +16,7 @@ public class TestBase {
   private WebDriver driver;
   protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
+  protected Shop shop;
 
   @BeforeClass
   public void start() {
@@ -30,7 +31,7 @@ public class TestBase {
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 10);
     litecartAdmin = new LitecartAdmin(driver);
-    litecartAdmin.launch();
+    shop = new Shop(driver);
   }
 
   @AfterClass

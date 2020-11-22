@@ -13,7 +13,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class LeftMenuPanelTests extends TestBase {
 
   @BeforeClass
-  public void login() {
+  public void openAdminPanel() {
+    litecartAdmin.launch();
     litecartAdmin.loginPage().login("admin", "admin");
   }
 
