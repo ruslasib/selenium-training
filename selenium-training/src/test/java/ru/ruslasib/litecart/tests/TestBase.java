@@ -27,6 +27,7 @@ public class TestBase {
     driver = new FirefoxDriver(options);
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 10);
     litecart = new Litecart(driver);
     litecart.launch();
