@@ -26,9 +26,11 @@ public class LeftMenuPanelTests extends TestBase {
 
   @Test
   public void testTemplate() {
-    litecart.leftMenu().click(By.cssSelector("[href*=template]"));
-    WebElement header = wait.until(presenceOfElementLocated(By.tagName("h1")));
-    assertThat(header.getText(), equalTo("Template"));
+    litecart.leftMenu().click(By.cssSelector("[href$=template]"));
+    wait.until(presenceOfElementLocated(By.tagName("h1")));
+    litecart.leftMenu().click(By.cssSelector("[href$=template]"));
+    WebElement templateHeader = wait.until(presenceOfElementLocated(By.tagName("h1")));
+    assertThat(templateHeader.getText(), equalTo("Template"));
   }
 
   @Test

@@ -1,18 +1,18 @@
 package test.java.ru.ruslasib;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class MyFirstTest {
 
   private WebDriver driver;
 
-  @Before
+  @BeforeMethod
   public void start() {
     driver = new ChromeDriver();
   }
@@ -24,7 +24,7 @@ public class MyFirstTest {
     driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
   }
 
-  @After
+  @AfterMethod
   public void stop() {
     driver.quit();
     driver = null;
