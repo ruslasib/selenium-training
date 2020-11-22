@@ -1,7 +1,5 @@
 package test.java.ru.ruslasib;
 
-import org.junit.After;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Keys;
@@ -14,6 +12,8 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
 
 import java.io.File;
 
@@ -82,7 +82,7 @@ public class StartBrowsersExamples {
     doSomething();
   }
 
-  @After
+  @AfterTest
   public void stop() {
     driver.quit();
     driver = null;

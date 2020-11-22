@@ -1,8 +1,8 @@
 package test.java.ru.ruslasib.litecart.tests.adminPageTests;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 
 import static org.hamcrest.CoreMatchers.containsString;

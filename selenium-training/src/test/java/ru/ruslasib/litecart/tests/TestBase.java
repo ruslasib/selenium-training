@@ -1,13 +1,12 @@
 package test.java.ru.ruslasib.litecart.tests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +17,7 @@ public class TestBase {
   protected WebDriverWait wait;
   protected Litecart litecart;
 
-  @Before
+  @BeforeClass
   public void start() {
 //    ChromeOptions options = new ChromeOptions();
 //    options.addArguments("start-maximized");
@@ -33,7 +32,7 @@ public class TestBase {
     litecart.launch();
   }
 
-  @After
+  @AfterClass
   public void stop() {
     driver.quit();
     driver = null;

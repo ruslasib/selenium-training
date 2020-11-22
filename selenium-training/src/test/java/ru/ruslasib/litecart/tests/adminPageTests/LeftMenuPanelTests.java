@@ -1,9 +1,9 @@
 package test.java.ru.ruslasib.litecart.tests.adminPageTests;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 public class LeftMenuPanelTests extends TestBase {
 
-  @Before
+  @BeforeClass
   public void login() {
     litecart.loginPage().login("admin", "admin");
   }
