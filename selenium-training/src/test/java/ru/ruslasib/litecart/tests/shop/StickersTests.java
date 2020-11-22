@@ -22,7 +22,7 @@ public class StickersTests extends TestBase {
   @Test
   public void testMostPopularStickers() {
     // находим всех уточек в разделе Most Popular
-    List<WebElement> mostPopularItems = shop.mostPopularItems();
+    List<WebElement> mostPopularItems = shop.homePage().mostPopularItems();
     List<String> stickersNames = new ArrayList<>();
     // находим стикеры у каждой из уточек и извлекаем названия стикеров
     mostPopularItems.forEach(item -> stickersNames.add(item.findElement(By.cssSelector("[class*=sticker]")).getText()));
@@ -33,7 +33,7 @@ public class StickersTests extends TestBase {
   @Test
   public void testCampaignsStickers() {
     // находим всех уточек в разделе Campaigns
-    List<WebElement> campaignsItems = shop.campaignsItems();
+    List<WebElement> campaignsItems = shop.homePage().campaignsItems();
     List<String> stickersNames = new ArrayList<>();
     // находим стикеры у каждой из уточек и извлекаем названия стикеров
     campaignsItems.forEach(item -> stickersNames.add(item.findElement(By.cssSelector("[class*=sticker]")).getText()));
@@ -44,7 +44,7 @@ public class StickersTests extends TestBase {
   @Test
   public void testLatestProductsStickers() {
     // находим всех уточек в разделе Latest Products
-    List<WebElement> latestProductsItems = shop.latestProductsItems();
+    List<WebElement> latestProductsItems = shop.homePage().latestProductsItems();
     List<String> stickersNames = new ArrayList<>();
     // находим стикеры у каждой из уточек и извлекаем названия стикеров
     latestProductsItems.forEach(item -> stickersNames.add(item.findElement(By.cssSelector("[class*=sticker]")).getText()));
