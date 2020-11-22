@@ -1,8 +1,8 @@
 package test.java.ru.ruslasib.litecart.tests;
 
 import org.openqa.selenium.WebDriver;
-import test.java.ru.ruslasib.litecart.tests.pages.admin.main.LeftMenu;
-import test.java.ru.ruslasib.litecart.tests.pages.admin.LoginPage;
+import test.java.ru.ruslasib.litecart.pages.admin.main.LeftMenu;
+import test.java.ru.ruslasib.litecart.pages.admin.LoginPage;
 
 public class LitecartAdmin {
 

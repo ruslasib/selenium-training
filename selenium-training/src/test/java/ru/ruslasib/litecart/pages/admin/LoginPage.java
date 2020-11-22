@@ -1,8 +1,8 @@
-package test.java.ru.ruslasib.litecart.tests.pages.admin;
+package test.java.ru.ruslasib.litecart.pages.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import test.java.ru.ruslasib.litecart.tests.pages.Page;
+import test.java.ru.ruslasib.litecart.pages.Page;
 
 public class LoginPage extends Page {
 

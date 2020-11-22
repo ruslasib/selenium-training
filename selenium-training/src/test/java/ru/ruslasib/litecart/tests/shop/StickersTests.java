@@ -1,4 +1,4 @@
-package test.java.ru.ruslasib.litecart.tests.shopTests;
+package test.java.ru.ruslasib.litecart.tests.shop;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

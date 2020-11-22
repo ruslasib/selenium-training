@@ -1,4 +1,4 @@
-package test.java.ru.ruslasib.litecart.tests.pages;
+package test.java.ru.ruslasib.litecart.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
