@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 import test.java.ru.ruslasib.litecart.tests.pages.admin.main.LeftMenu;
 import test.java.ru.ruslasib.litecart.tests.pages.admin.LoginPage;
 
-public class Litecart {
+public class LitecartAdmin {
 
   private WebDriver driver;
   private LoginPage loginPage;
   private LeftMenu leftMenu;
 
-  public Litecart(WebDriver driver) {
+  public LitecartAdmin(WebDriver driver) {
     this.driver = driver;
   }
 

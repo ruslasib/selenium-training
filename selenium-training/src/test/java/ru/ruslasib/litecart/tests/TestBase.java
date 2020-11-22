@@ -15,7 +15,7 @@ public class TestBase {
 
   private WebDriver driver;
   protected WebDriverWait wait;
-  protected Litecart litecart;
+  protected LitecartAdmin litecartAdmin;
 
   @BeforeClass
   public void start() {
@@ -29,8 +29,8 @@ public class TestBase {
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 10);
-    litecart = new Litecart(driver);
-    litecart.launch();
+    litecartAdmin = new LitecartAdmin(driver);
+    litecartAdmin.launch();
   }
 
   @AfterClass
