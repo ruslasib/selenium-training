@@ -15,7 +15,7 @@ public class CountriesTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
-    super.openAdminPanel();
+    super.loginToAdminPanel();
     litecartAdmin.homePage().countries();
   }
 

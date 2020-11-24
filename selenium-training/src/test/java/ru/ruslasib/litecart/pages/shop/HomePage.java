@@ -33,6 +33,10 @@ public class HomePage extends Page {
   }
 
   public void goToHomePage() {
-    driver.findElement(By.cssSelector(".logotype a"));
+    driver.findElement(By.cssSelector(".logotype a")).click();
+  }
+
+  public void geoZones() {
+    driver.findElement(By.cssSelector("[href$=geo_zones]")).click();
   }
 }

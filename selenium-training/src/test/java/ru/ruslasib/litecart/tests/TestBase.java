@@ -51,7 +51,7 @@ public class TestBase {
     }
   }
 
-  public void openAdminPanel() {
+  public void loginToAdminPanel() {
     litecartAdmin.launch();
     litecartAdmin.loginPage().login("admin", "admin");
   }

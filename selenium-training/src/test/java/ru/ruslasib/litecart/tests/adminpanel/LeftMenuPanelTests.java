@@ -14,7 +14,7 @@ public class LeftMenuPanelTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
-    super.openAdminPanel();
+    super.loginToAdminPanel();
   }
 
   @Test
