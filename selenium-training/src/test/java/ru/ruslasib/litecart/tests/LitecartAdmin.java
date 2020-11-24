@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import test.java.ru.ruslasib.litecart.pages.admin.Countries;
 import test.java.ru.ruslasib.litecart.pages.admin.EditCountry;
 import test.java.ru.ruslasib.litecart.pages.admin.LoginPage;
-import test.java.ru.ruslasib.litecart.pages.admin.main.EditGeoZone;
-import test.java.ru.ruslasib.litecart.pages.admin.main.GeoZones;
+import test.java.ru.ruslasib.litecart.pages.admin.EditGeoZone;
+import test.java.ru.ruslasib.litecart.pages.admin.GeoZones;
 import test.java.ru.ruslasib.litecart.pages.admin.main.LeftMenu;
 import test.java.ru.ruslasib.litecart.pages.shop.HomePage;
 
