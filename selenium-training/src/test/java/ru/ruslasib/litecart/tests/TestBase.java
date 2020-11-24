@@ -50,4 +50,13 @@ public class TestBase {
       return false;
     }
   }
+
+  public void openAdminPanel() {
+    litecartAdmin.launch();
+    litecartAdmin.loginPage().login("admin", "admin");
+  }
+
+  public void openShopPage() {
+    shop.launch();
+  }
 }

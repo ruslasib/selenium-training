@@ -27,4 +27,8 @@ public class HomePage extends Page {
   public List<WebElement> latestProductsItems() {
     return driver.findElements(By.cssSelector("#box-latest-products li"));
   }
+
+  public void countries() {
+    driver.findElement(By.cssSelector("[href$=countries]")).click();
+  }
 }

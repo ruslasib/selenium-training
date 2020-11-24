@@ -1,4 +1,4 @@
-package test.java.ru.ruslasib.litecart.tests.adminpage;
+package test.java.ru.ruslasib.litecart.tests.adminpanel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,8 +14,7 @@ public class LeftMenuPanelTests extends TestBase {
 
   @BeforeClass
   public void openAdminPanel() {
-    litecartAdmin.launch();
-    litecartAdmin.loginPage().login("admin", "admin");
+    super.openAdminPanel();
   }
 
   @Test

@@ -16,7 +16,7 @@ public class StickersTests extends TestBase {
 
   @BeforeClass
   public void openShopPage() {
-    shop.launch();
+    super.openShopPage();
   }
 
   @Test
