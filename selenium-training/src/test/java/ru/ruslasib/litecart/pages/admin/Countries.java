@@ -19,4 +19,8 @@ public class Countries extends Page {
   public List<WebElement> countriesRows() {
     return driver.findElements(By.cssSelector("table.dataTable tr.row"));
   }
+
+  public void editCountry(int rowNumber) {
+    driver.findElement(By.cssSelector("table.dataTable tr:nth-of-type(" + (rowNumber + 1) + ") td:last-child a")).click();
+  }
 }

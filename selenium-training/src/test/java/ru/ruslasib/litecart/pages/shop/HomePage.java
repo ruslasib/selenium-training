@@ -31,4 +31,8 @@ public class HomePage extends Page {
   public void countries() {
     driver.findElement(By.cssSelector("[href$=countries]")).click();
   }
+
+  public void goToHomePage() {
+    driver.findElement(By.cssSelector(".logotype a"));
+  }
 }
