@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CountriesTests extends TestBase {
 
   @BeforeClass
-  public void init() {
+  public void prepare() {
     super.openAdminPanel();
     litecartAdmin.homePage().countries();
   }

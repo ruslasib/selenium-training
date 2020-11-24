@@ -13,7 +13,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class LeftMenuPanelTests extends TestBase {
 
   @BeforeClass
-  public void openAdminPanel() {
+  public void prepare() {
     super.openAdminPanel();
   }
 

@@ -14,8 +14,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class LoginTests extends TestBase {
 
   @BeforeClass
-  public void openAdminPanel() {
-    litecartAdmin.launch();
+  public void prepare() {
+    super.openAdminPanel();
   }
 
   @Test
