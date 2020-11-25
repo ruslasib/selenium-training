@@ -31,12 +31,12 @@ public class TestBase {
 //    options.addArguments("start-maximized");
 //    driver = new ChromeDriver(options);
     // uncomment to launch Edge
-    driver = new EdgeDriver(new EdgeDriverService.Builder()
-            .usingDriverExecutable(new File("C:\\Tools\\msedgedriver.exe")).build());
-    // uncomment to launch Firefox
-//    FirefoxOptions options = new FirefoxOptions();
-//    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
-//    driver = new FirefoxDriver(options);
+//    driver = new EdgeDriver(new EdgeDriverService.Builder()
+//            .usingDriverExecutable(new File("C:\\Tools\\msedgedriver.exe")).build());
+    //uncomment to launch Firefox
+    FirefoxOptions options = new FirefoxOptions();
+    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
+    driver = new FirefoxDriver(options);
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.manage().window().maximize();
