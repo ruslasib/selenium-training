@@ -15,7 +15,7 @@ public class CountriesTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
-    litecartAdmin.homePage().countries();
+    litecartAdmin.leftMenu().countries();
   }
 
   @Test
@@ -44,7 +44,7 @@ public class CountriesTests extends TestBase {
       count = count + 1;
     }
     for (int rowNumber : rowNumbers) {
-      litecartAdmin.homePage().countries();
+      litecartAdmin.leftMenu().countries();
       litecartAdmin.countries().editCountry(rowNumber);
       List<String> allZones = litecartAdmin.editCountry().allZones();
       List<String> allZonesSorted = new ArrayList<>(allZones);

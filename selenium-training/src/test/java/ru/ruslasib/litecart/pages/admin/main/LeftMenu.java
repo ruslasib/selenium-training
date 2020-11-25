@@ -19,8 +19,16 @@ public class LeftMenu extends Page {
     click(By.cssSelector("[href*=catalog]"));
   }
 
+  public void countries() {
+    click(By.cssSelector("[href$=countries]"));
+  }
+
   public void customers() {
     click(By.cssSelector("[href$=customers]"));
+  }
+
+  public void geoZones() {
+    click(By.cssSelector("[href$=geo_zones]"));
   }
 
   public void languages() {

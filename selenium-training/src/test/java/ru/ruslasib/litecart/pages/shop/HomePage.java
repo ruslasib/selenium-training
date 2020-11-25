@@ -28,15 +28,7 @@ public class HomePage extends Page {
     return driver.findElements(By.cssSelector("#box-latest-products li"));
   }
 
-  public void countries() {
-    driver.findElement(By.cssSelector("[href$=countries]")).click();
-  }
-
   public void goToHomePage() {
-    driver.findElement(By.cssSelector(".logotype a")).click();
-  }
-
-  public void geoZones() {
-    driver.findElement(By.cssSelector("[href$=geo_zones]")).click();
+    driver.findElement(By.cssSelector("#logotype-wrapper a")).click();
   }
 }

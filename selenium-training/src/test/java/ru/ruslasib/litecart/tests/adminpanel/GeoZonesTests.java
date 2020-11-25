@@ -20,11 +20,11 @@ public class GeoZonesTests extends TestBase {
 
   @Test
   public void testGeoZonesArrangement() {
-    litecartAdmin.homePage().geoZones();
+    litecartAdmin.leftMenu().geoZones();
     List<WebElement> allZonesRows = litecartAdmin.geoZones().allZonesRows();
     int count = 1;
     for (WebElement zone : allZonesRows) {
-      litecartAdmin.homePage().geoZones();
+      litecartAdmin.leftMenu().geoZones();
       litecartAdmin.geoZones().editGeoZone(count);
       List<String> allZonesNames = litecartAdmin.editGeoZone().allZonesNames();
       List<String> allZonesNamesSorted = new ArrayList<>(allZonesNames);
