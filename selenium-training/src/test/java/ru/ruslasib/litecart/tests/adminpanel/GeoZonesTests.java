@@ -16,7 +16,6 @@ public class GeoZonesTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
-    loginToAdminPanel();
   }
 
   @Test

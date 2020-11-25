@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-  private WebDriver driver;
+  public WebDriver driver;
   protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
@@ -30,8 +30,6 @@ public class TestBase {
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 10);
-    litecartAdmin = new LitecartAdmin(driver);
-    shop = new Shop(driver);
   }
 
   @AfterClass
@@ -44,19 +42,36 @@ public class TestBase {
     try {
       driver.findElement(locator);
       return true;
-    } catch(InvalidSelectorException ex) {
+    } catch (InvalidSelectorException ex) {
       throw ex;
     } catch (NoSuchElementException ex) {
       return false;
     }
   }
 
-  public void loginToAdminPanel() {
-    litecartAdmin.launch();
-    litecartAdmin.loginPage().login("admin", "admin");
+  public void login(String login, String password) {
+    typeLogin(login);
+    typePassword(password);
+    click(By.cssSelector("button[name=login]"));
   }
 
-  public void openShopPage() {
-    shop.launch();
+  public void click(By locator) {
+    driver.findElement(locator).click();
+  }
+
+  public void typeLogin(String login) {
+    type(By.name("username"), login);
+  }
+
+  private void type(By locator, String userInput) {
+    driver.findElement(locator).sendKeys(userInput);
+  }
+
+  public void typePassword(String password) {
+    type(By.name("password"), password);
+  }
+
+  public void clickLogin() {
+    click(By.cssSelector("button[name=login]"));
   }
 }

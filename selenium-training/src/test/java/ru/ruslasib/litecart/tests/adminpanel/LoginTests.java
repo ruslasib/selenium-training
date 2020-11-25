@@ -15,7 +15,7 @@ public class LoginTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
-    super.loginToAdminPanel();
+
   }
 
   @Test
