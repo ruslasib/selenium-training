@@ -16,6 +16,8 @@ public class GeoZonesTests extends TestBase {
 
   @BeforeClass
   public void prepare() {
+    litecartAdmin.launch();
+    litecartAdmin.loginPage().login("admin", "admin");
   }
 
   @Test

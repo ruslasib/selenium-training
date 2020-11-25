@@ -12,8 +12,8 @@ public class LeftMenuPanelClickTests extends TestBase {
 
   @BeforeClass
   public void launch() {
-    driver.get("http://localhost/litecart/admin/");
-    login("admin", "admin");
+    litecartAdmin.launch();
+    litecartAdmin.loginPage().login("admin", "admin");
   }
 
   @Test
