@@ -368,7 +368,7 @@ public class LeftMenuPanelTests extends TestBase {
   public void testSettingsGeneral() {
     litecartAdmin.leftMenu().settings();
     wait.until(presenceOfElementLocated(By.tagName("h1")));
-    litecartAdmin.leftMenu().click(By.cssSelector("[href$=general]"));
+    litecartAdmin.leftMenu().click(By.cssSelector("[href$=generalTab]"));
     WebElement header = wait.until(presenceOfElementLocated(By.tagName("h1")));
     assertThat(header.getText(), equalTo("Settings"));
   }
