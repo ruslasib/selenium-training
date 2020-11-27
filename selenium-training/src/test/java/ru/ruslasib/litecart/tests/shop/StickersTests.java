@@ -15,7 +15,7 @@ public class StickersTests extends TestBase {
 
   @BeforeClass
   public void launch() {
-    driver.get("http://localhost/litecart/");
+    shop.launch("http://localhost/litecart/");
   }
 
   @Test

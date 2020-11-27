@@ -18,7 +18,7 @@ public class ProductInfoTests extends TestBase {
 
   @BeforeClass
   public void launch() {
-    shop.launch();
+    shop.launch("http://localhost/litecart/");
   }
 
   @BeforeMethod
