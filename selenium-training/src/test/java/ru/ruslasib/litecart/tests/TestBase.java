@@ -38,7 +38,7 @@ public class TestBase {
     options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
     driver = new FirefoxDriver(options);
     System.out.println(((HasCapabilities) driver).getCapabilities());
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 10);
     litecartAdmin = new LitecartAdmin(driver);
