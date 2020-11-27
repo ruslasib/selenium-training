@@ -31,4 +31,24 @@ public class HomePage extends Page {
   public void goToHomePage() {
     driver.findElement(By.cssSelector("#logotype-wrapper a")).click();
   }
+
+  public void createAccount() {
+    click(By.xpath("//*[@name='login_form']//a[contains(@href,'create_account')]"));
+  }
+
+  public void logout() {
+    click(By.cssSelector("#box-account [href$=logout]"));
+  }
+
+  public void inputEmail(String email) {
+    type(By.cssSelector("[name=email]"), email);
+  }
+
+  public void inputPassword(String password) {
+    type(By.cssSelector("[name=password]"), password);
+  }
+
+  public void loginButton() {
+    click(By.cssSelector("[name=login]"));
+  }
 }
