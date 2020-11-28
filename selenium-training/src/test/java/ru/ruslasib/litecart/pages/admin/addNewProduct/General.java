@@ -16,12 +16,12 @@ public class General extends Page {
     this.driver = driver;
   }
 
-  public void name(String productName) {
+  public void inputName(String productName) {
     driver.findElement(By.cssSelector("[name^=name]")).clear();
     type(By.cssSelector("[name^=name]"), productName);
   }
 
-  public void code(String productCode) {
+  public void inputCode(String productCode) {
     driver.findElement(By.cssSelector("[name=code]")).clear();
     type(By.cssSelector("[name=code]"), productCode);
   }
@@ -30,23 +30,23 @@ public class General extends Page {
     checkRadioButton(By.cssSelector("[type=radio]"), radioButtonValue, "value");
   }
 
-  public void chooseDefaultCategory(String defaultCategory) {
+  public void selectDefaultCategory(String defaultCategory) {
     click(By.cssSelector("[name=default_category_id"));
-    chooseElementFromDropbox(By.cssSelector("[name=default_category_id] option"), defaultCategory, "textContent");
+    chooseElementFromDropbox(By.cssSelector("[inputName=default_category_id] option"), defaultCategory, "textContent");
   }
 
   public void chooseCategoryCheckbox(String folder) {
     chooseCheckbox(By.xpath("//strong[.='Categories']/../div//*[@type='checkbox']"), folder, "data-name");
   }
 
-  public void chooseGender(String male) {
+  public void chooseGender(String genderCode) {
     /**
      * male has following values:
      * 1-2 - Female
      * 1-1 - Male
      * 1-3 - Unisex
      */
-    chooseCheckbox(By.cssSelector("[name^=product_groups]"), male, "value");
+    chooseCheckbox(By.cssSelector("[name^=product_groups]"), genderCode, "value");
   }
 
   public void inputQuantity(String quantity) {
@@ -54,17 +54,17 @@ public class General extends Page {
     type(By.cssSelector("[name=quantity]"), quantity);
   }
 
-  public void chooseQuantityUnit(String pieces) {
+  public void selectQuantityUnit(String pieces) {
     click(By.cssSelector("[name=quantity_unit_id]"));
     chooseElementFromDropbox(By.cssSelector("[name=quantity_unit_id] option"), pieces, "textContent");
   }
 
-  public void chooseDeliveryStatus(String deliveryStatus) {
+  public void selectDeliveryStatus(String deliveryStatus) {
     click(By.cssSelector("[name=delivery_status_id]"));
     chooseElementFromDropbox(By.cssSelector("[delivery_status_id] option"), deliveryStatus, "textContent");
   }
 
-  public void chooseSoldOutStatus(String soldOutStatus) {
+  public void selectSoldOutStatus(String soldOutStatus) {
     click(By.cssSelector("[name=sold_out_status_id]"));
     chooseElementFromDropbox(By.cssSelector("[name=sold_out_status_id]"), soldOutStatus, "textContent");
   }
@@ -74,16 +74,10 @@ public class General extends Page {
   }
 
   public void inputDateValidFrom(String dateFrom) {
-    Actions action = new Actions(driver);
-    action.moveToElement(driver.findElement(By.cssSelector("[name=date_valid_from]")))
-            .moveByOffset(1, 1)
-            .sendKeys(dateFrom.replaceAll("^0-9", ""))
-            .perform();
-//    click(By.cssSelector("[name=date_valid_from]"));
-//    type(By.cssSelector("[name=date_valid_from]"), dateFrom.replaceAll("^0-9", ""));
+    inputDate(By.cssSelector("[name=date_valid_from]"), dateFrom);
   }
 
   public void inputDateValidTo(String dateTo) {
-    type(By.cssSelector("[name=date_valid_to]"), dateTo.replaceAll("^0-9", ""));
+    inputDate(By.cssSelector("[name=date_valid_to]"), dateTo);
   }
 }

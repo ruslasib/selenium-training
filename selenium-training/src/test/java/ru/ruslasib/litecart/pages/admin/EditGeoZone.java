@@ -20,7 +20,7 @@ public class EditGeoZone extends Page {
 
   public List<String> allZonesNames() {
     List<String> zoneNames = new ArrayList<>();
-    List<WebElement> zones = driver.findElements(By.cssSelector("[name*=zone_code] > [selected=selected]"));
+    List<WebElement> zones = driver.findElements(By.cssSelector("[inputName*=zone_code] > [selected=selected]"));
     zones.forEach(zone -> zoneNames.add(zone.getAttribute("textContent")));
     return zoneNames;
   }

@@ -29,7 +29,7 @@ public class ProductInfoTests extends TestBase {
   @Test
   public void testProductName() {
     List<WebElement> products = shop.homePage().campaignsItems();
-    String nameOnMainPage = products.get(0).findElement(By.cssSelector(".name")).getAttribute("textContent");
+    String nameOnMainPage = products.get(0).findElement(By.cssSelector(".inputName")).getAttribute("textContent");
     products.get(0).click();
     String nameOnProductPage = shop.productPage().productName();
     assertThat(nameOnMainPage, equalTo(nameOnProductPage));

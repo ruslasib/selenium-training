@@ -20,43 +20,43 @@ public class CreateAccount extends Page {
   }
 
   public void inputFirstName(String firstName) {
-    type(By.cssSelector("[name=firstname]"), firstName);
+    type(By.cssSelector("[inputName=firstname]"), firstName);
   }
 
   public void inputLastName(String lastName) {
-    type(By.cssSelector("[name=lastname]"), lastName);
+    type(By.cssSelector("[inputName=lastname]"), lastName);
   }
 
   public void inputAddress1(String address1) {
-    type(By.cssSelector("[name=address1]"), address1);
+    type(By.cssSelector("[inputName=address1]"), address1);
   }
 
   public void inputPostcode(String postcode) {
-    type(By.cssSelector("[name=postcode]"), postcode);
+    type(By.cssSelector("[inputName=postcode]"), postcode);
   }
 
   public void inputCity(String city) {
-    type(By.cssSelector("[name=city]"), city);
+    type(By.cssSelector("[inputName=city]"), city);
   }
 
   public void inputEmail(String email) {
-    type(By.cssSelector("[name=email]"), email);
+    type(By.cssSelector("[inputName=email]"), email);
   }
 
   public void inputPhone(String phone) {
-    type(By.cssSelector("[name=phone]"), phone);
+    type(By.cssSelector("[inputName=phone]"), phone);
   }
 
   public void inputDesiredPassword(String password) {
-    type(By.cssSelector("[name=password]"), password);
+    type(By.cssSelector("[inputName=password]"), password);
   }
 
   public void inputConfirmPassword(String password) {
-    type(By.cssSelector("[name=confirmed_password]"), password);
+    type(By.cssSelector("[inputName=confirmed_password]"), password);
   }
 
   public void createAccount() {
-    click(By.cssSelector("[name=create_account]"));
+    click(By.cssSelector("[inputName=create_account]"));
   }
 
   public void chooseCountry(String countryName) {
@@ -72,8 +72,8 @@ public class CreateAccount extends Page {
   }
 
   public void chooseState(String stateName) {
-    click(By.cssSelector("select[name=zone_code]"));
-    List<WebElement> countries = driver.findElements(By.cssSelector("[name=zone_code] > option"));
+    click(By.cssSelector("select[inputName=zone_code]"));
+    List<WebElement> countries = driver.findElements(By.cssSelector("[inputName=zone_code] > option"));
     for (WebElement country : countries) {
       if (country.getAttribute("textContent").equals(stateName)) {
         country.click();

@@ -36,12 +36,12 @@ public class TestBase {
 //            .usingDriverExecutable(new File("C:\\Tools\\msedgedriver.exe")).build());
 
     // uncomment to launch Firefox Nightly
-//    FirefoxOptions options = new FirefoxOptions();
-//    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
-//    driver = new FirefoxDriver(options);
+    FirefoxOptions options = new FirefoxOptions();
+    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
+    driver = new FirefoxDriver(options);
 
     // uncomment to launch Firefox
-    driver = new FirefoxDriver();
+//    driver = new FirefoxDriver();
 
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -91,7 +91,7 @@ public class TestBase {
   }
 
   public void clickLogin() {
-    click(By.cssSelector("button[name=login]"));
+    click(By.cssSelector("button[inputName=login]"));
   }
 
   protected boolean colorIsGrey(String color) {

@@ -3,8 +3,11 @@ package test.java.ru.ruslasib.litecart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
+
+import static org.openqa.selenium.By.*;
 
 public class Page {
 
@@ -29,7 +32,7 @@ public class Page {
   public void checkRadioButton(By locator, String radioButtonValue, String textSource) {
     /**
      * radioButtonValue has two values:
-     * textSource - name of attribute where is needed to take text to choose radio  button
+     * textSource - inputName of attribute where is needed to take text to choose radio  button
      */
     List<WebElement> buttons = driver.findElements(locator);
     for (WebElement button : buttons) {
@@ -58,5 +61,15 @@ public class Page {
         return;
       }
     }
+  }
+
+  public void inputDate(By locator, String date) {
+    Actions action = new Actions(driver);
+    System.out.println(date.replaceAll("^0-9", ""));
+    action.moveToElement(driver.findElement(locator))
+            .moveByOffset(11, 11)
+            .click()
+            .sendKeys(date.replaceAll("/", ""))
+            .perform();
   }
 }

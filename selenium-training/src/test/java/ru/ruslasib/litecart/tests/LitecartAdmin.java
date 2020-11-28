@@ -19,7 +19,7 @@ public class LitecartAdmin {
   private EditGeoZone editGeoZone;
   private Catalog catalog;
   private AddNewProduct addNewProduct;
-  private General general;
+  private EditProduct editProduct;
 
   public LitecartAdmin(WebDriver driver) {
     this.driver = driver;
@@ -36,6 +36,7 @@ public class LitecartAdmin {
     editGeoZone = new EditGeoZone(driver);
     catalog = new Catalog(driver);
     addNewProduct = new AddNewProduct(driver);
+    editProduct = new EditProduct(driver);
   }
 
   public LoginPage loginPage() {
@@ -72,5 +73,9 @@ public class LitecartAdmin {
 
   public AddNewProduct addNewProduct() {
     return addNewProduct;
+  }
+
+  public EditProduct editProduct() {
+    return editProduct;
   }
 }

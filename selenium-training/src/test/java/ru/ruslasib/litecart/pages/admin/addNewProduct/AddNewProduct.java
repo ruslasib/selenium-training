@@ -8,15 +8,27 @@ public class AddNewProduct extends Page {
 
   private WebDriver driver;
   private General general;
+  private Information information;
+  private Prices prices;
 
   public AddNewProduct(WebDriver driver) {
     super(driver);
     this.driver = driver;
     general = new General(driver);
+    information = new Information(driver);
+    prices = new Prices(driver);
   }
 
   public General general() {
     return general;
+  }
+
+  public Information information() {
+    return information;
+  }
+
+  public Prices prices() {
+    return prices;
   }
 
   public void generalTab() {
@@ -25,6 +37,7 @@ public class AddNewProduct extends Page {
 
   public void informationTab() {
     click(By.cssSelector("[href$=tab-information]"));
+
   }
 
   public void pricesTab() {

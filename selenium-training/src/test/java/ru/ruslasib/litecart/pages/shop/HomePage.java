@@ -33,7 +33,7 @@ public class HomePage extends Page {
   }
 
   public void createAccount() {
-    click(By.xpath("//*[@name='login_form']//a[contains(@href,'create_account')]"));
+    click(By.xpath("//*[@inputName='login_form']//a[contains(@href,'create_account')]"));
   }
 
   public void logout() {
@@ -41,14 +41,14 @@ public class HomePage extends Page {
   }
 
   public void inputEmail(String email) {
-    type(By.cssSelector("[name=email]"), email);
+    type(By.cssSelector("[inputName=email]"), email);
   }
 
   public void inputPassword(String password) {
-    type(By.cssSelector("[name=password]"), password);
+    type(By.cssSelector("[inputName=password]"), password);
   }
 
   public void loginButton() {
-    click(By.cssSelector("[name=login]"));
+    click(By.cssSelector("[inputName=login]"));
   }
 }

@@ -1,19 +1,24 @@
 package test.java.ru.ruslasib.litecart.pages.admin;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 public class LoginPage extends Page {
 
+  WebDriver driver;
+
   public LoginPage(WebDriver driver) {
     super(driver);
+    this.driver = driver;
   }
 
   public void login(String login, String password) {
     typeLogin(login);
     typePassword(password);
-    click(By.cssSelector("button[name=login]"));
+//    click(By.cssSelector("[inputName=login]"));
+    driver.findElement(By.name("password")).sendKeys(Keys.ENTER);
   }
 
   public void typeLogin(String login) {
@@ -25,6 +30,6 @@ public class LoginPage extends Page {
   }
 
   public void clickLogin() {
-    click(By.cssSelector("button[name=login]"));
+    click(By.cssSelector("button[inputName=login]"));
   }
 }
