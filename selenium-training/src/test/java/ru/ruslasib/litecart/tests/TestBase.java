@@ -57,17 +57,6 @@ public class TestBase {
     driver = null;
   }
 
-  public boolean isElementPresent(By locator) {
-    try {
-      driver.findElement(locator);
-      return true;
-    } catch (InvalidSelectorException ex) {
-      throw ex;
-    } catch (NoSuchElementException ex) {
-      return false;
-    }
-  }
-
   public void login(String login, String password) {
     typeLogin(login);
     typePassword(password);
@@ -124,5 +113,23 @@ public class TestBase {
 
   protected int fontSize(String sizeInfo) {
     return Integer.parseInt(sizeInfo.replaceAll("[^0-9]", ""));
+  }
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return driver.findElements(locator).size() > 0;
+    } finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
+  }
+
+  protected boolean isElementNotPresent(By locator) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return driver.findElements(locator).size() == 0;
+    } finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
   }
 }

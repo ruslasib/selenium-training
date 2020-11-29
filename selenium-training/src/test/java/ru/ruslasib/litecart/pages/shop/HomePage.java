@@ -51,4 +51,14 @@ public class HomePage extends Page {
   public void loginButton() {
     click(By.cssSelector("[inputName=login]"));
   }
+
+  public void login(String login, String password) {
+    type(By.name("email"), login);
+    type(By.name("password"), password);
+    click(By.name("login"));
+  }
+
+  public void checkout() {
+    click(By.cssSelector(".link[href$=checkout]"));
+  }
 }

@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import test.java.ru.ruslasib.litecart.tests.ParametersHolder;
 
 import java.util.List;
-
-import static org.openqa.selenium.By.*;
+import java.util.concurrent.TimeUnit;
 
 public class Page {
 
@@ -71,5 +71,14 @@ public class Page {
             .click()
             .sendKeys(date.replaceAll("/", ""))
             .perform();
+  }
+
+  public boolean isElementPresent(By locator) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return driver.findElements(locator).size() > 0;
+    } finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
   }
 }

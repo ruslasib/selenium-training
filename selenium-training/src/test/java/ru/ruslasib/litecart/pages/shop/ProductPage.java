@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
+import java.util.List;
+
 public class ProductPage extends Page {
 
   private WebDriver driver;
@@ -24,5 +26,21 @@ public class ProductPage extends Page {
 
   public WebElement promoPrice() {
     return driver.findElement(By.cssSelector("#box-product .price-wrapper strong"));
+  }
+
+  public void addToCart() {
+    click(By.name("add_cart_product"));
+  }
+
+  public void selectSize() {
+    if (isElementPresent(By.cssSelector("[name^=options]"))) {
+      click(By.cssSelector("[name^=options]"));
+      List<WebElement> options = driver.findElements(By.cssSelector("[name^=options] option"));
+      options.get(1).click();
+    }
+  }
+
+  public WebElement quantity() {
+    return driver.findElement(By.cssSelector("#cart-wrapper .quantity"));
   }
 }
