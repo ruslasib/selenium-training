@@ -23,4 +23,8 @@ public class Cart extends Page {
   public void remove() {
     click(By.name("remove_cart_item"));
   }
+
+  public WebElement noItemsInYourCart() {
+    return driver.findElement(By.cssSelector("#checkout-cart-wrapper em"));
+  }
 }

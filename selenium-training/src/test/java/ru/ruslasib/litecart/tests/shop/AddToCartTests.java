@@ -48,5 +48,6 @@ public class AddToCartTests extends TestBase {
       items = shop.cart().orderedItemsQuantity();
     }
     assertTrue(isElementNotPresent(By.id("#box-checkout-summary td.item")));
+    assertThat(shop.cart().noItemsInYourCart().getAttribute("textContent"), equalTo("There are no items in your cart."));
   }
 }
