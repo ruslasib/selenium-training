@@ -23,51 +23,30 @@ public class AddToCartTests extends TestBase {
 
   @Test
   public void testAddToAndRemoveFromCart() {
-    // добавляем первый товар
-    shop.homePage().mostPopularItems().get(0).click();
-    shop.productPage().selectSize();
-    int quantityBefore = Integer.parseInt(shop.productPage().quantity().getAttribute("textContent"));
-    int quantityAfter = quantityBefore + 1;
-    shop.productPage().addToCart();
-    WebElement quantity = shop.productPage().quantity();
-    wait.until(attributeToBe(quantity, "textContent", Integer.toString(quantityAfter)));
-    assertThat(quantity.getAttribute("textContent"), equalTo(Integer.toString(quantityAfter)));
+    // добавляем товары в корзину
+    for (int i = 0; i <= 2; i++) {
+      shop.homePage().goToHomePage();
+      shop.homePage().mostPopularItems().get(0).click();
+      shop.productPage().selectSize();
+      int quantityBefore = Integer.parseInt(shop.productPage().quantity().getAttribute("textContent"));
+      int quantityAfter = quantityBefore + 1;
+      shop.productPage().addToCart();
+      WebElement quantity = shop.productPage().quantity();
+      wait.until(attributeToBe(quantity, "textContent", Integer.toString(quantityAfter)));
+      assertThat(quantity.getAttribute("textContent"), equalTo(Integer.toString(quantityAfter)));
+    }
 
-    // добавляем второй товар
-    shop.homePage().goToHomePage();
-    shop.homePage().mostPopularItems().get(0).click();
-    shop.productPage().selectSize();
-    quantityBefore = Integer.parseInt(shop.productPage().quantity().getAttribute("textContent"));
-    quantityAfter = quantityBefore + 1;
-    shop.productPage().addToCart();
-    quantity = shop.productPage().quantity();
-    wait.until(attributeToBe(quantity, "textContent", Integer.toString(quantityAfter)));
-    assertThat(quantity.getAttribute("textContent"), equalTo(Integer.toString(quantityAfter)));
-
-    // добавляем третий товар
-    shop.homePage().goToHomePage();
-    shop.homePage().mostPopularItems().get(0).click();
-    shop.productPage().selectSize();
-    quantityBefore = Integer.parseInt(shop.productPage().quantity().getAttribute("textContent"));
-    quantityAfter = quantityBefore + 1;
-    shop.productPage().addToCart();
-    quantity = shop.productPage().quantity();
-    wait.until(attributeToBe(quantity, "textContent", Integer.toString(quantityAfter)));
-    assertThat(quantity.getAttribute("textContent"), equalTo(Integer.toString(quantityAfter)));
-
-    // переходим к корзину и удалаем первый товар
+    // переходим к корзину и удаляем товары
     shop.homePage().checkout();
-    List<WebElement> before = shop.cart().orderedItemsQuantity();
-    shop.cart().remove();
-    wait.until(numberOfElementsToBeLessThan(By.cssSelector("#box-checkout-summary td.item"), before.size()));
-
-    // удаляем второй товар
-    before = shop.cart().orderedItemsQuantity();
-    shop.cart().remove();
-    wait.until(numberOfElementsToBeLessThan(By.cssSelector("#box-checkout-summary td.item"), before.size()));
-
-    // удаляем третрий товар
-    shop.cart().remove();
+    List<WebElement> items = shop.cart().orderedItemsQuantity();
+    while (! items.isEmpty()) {
+      if (isElementPresent(By.cssSelector(".shortcuts > li"))) {
+        driver.findElements(By.cssSelector(".shortcuts > li")).get(0).click();
+      }
+      shop.cart().remove();
+      wait.until(numberOfElementsToBeLessThan(By.cssSelector("#box-checkout-summary td.item"), items.size()));
+      items = shop.cart().orderedItemsQuantity();
+    }
     assertTrue(isElementNotPresent(By.id("#box-checkout-summary td.item")));
   }
 }

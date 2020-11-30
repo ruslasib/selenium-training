@@ -21,8 +21,6 @@ public class Cart extends Page {
   }
 
   public void remove() {
-    if (isElementPresent(By.name("remove_cart_item"))) {
-      click(By.name("remove_cart_item"));
-    }
+    click(By.name("remove_cart_item"));
   }
 }
