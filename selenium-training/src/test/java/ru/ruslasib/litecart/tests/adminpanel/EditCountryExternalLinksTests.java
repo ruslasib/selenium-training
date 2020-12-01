@@ -32,7 +32,7 @@ public class EditCountryExternalLinksTests extends TestBase {
     Set<String> oldWindows = driver.getWindowHandles();
     for (WebElement link : links) {
       link.click();
-      String newWindow = getNewWindow(oldWindows, driver);
+      String newWindow = getNewWindowId(oldWindows, driver);
       driver.switchTo().window(newWindow);
       assertNotEquals(mainWindow, newWindow);
       driver.close();
