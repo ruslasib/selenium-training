@@ -23,4 +23,18 @@ public class Countries extends Page {
   public void editCountry(int rowNumber) {
     driver.findElement(By.cssSelector("table.dataTable tr:nth-of-type(" + (rowNumber + 1) + ") td:last-child a")).click();
   }
+
+  public void editCountry(String countryName) {
+    List<WebElement> countries = driver.findElements(By.cssSelector(".row > td:nth-of-type(5) >a"));
+    for (WebElement country : countries) {
+      if (country.getAttribute("textContent").equals(countryName)) {
+        country.click();
+        return;
+      }
+    }
+  }
+
+  public WebElement header() {
+    return driver.findElement(By.tagName("h1"));
+  }
 }

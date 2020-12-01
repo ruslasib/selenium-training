@@ -8,13 +8,16 @@ import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import test.java.ru.ruslasib.litecart.ExpectedConditions;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -36,17 +39,20 @@ public class TestBase {
 //            .usingDriverExecutable(new File("C:\\Tools\\msedgedriver.exe")).build());
 
     // uncomment to launch Firefox Nightly
-    FirefoxOptions options = new FirefoxOptions();
-    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
-    driver = new FirefoxDriver(options);
+//    DesiredCapabilities caps = new DesiredCapabilities();
+//    caps.setCapability("unexpectedAlertBehaviour", "accept");
+//    caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, caps);
+//    FirefoxOptions options = new FirefoxOptions();
+//    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
+//    driver = new FirefoxDriver(caps);
 
     // uncomment to launch Firefox
-//    driver = new FirefoxDriver();
+    driver = new FirefoxDriver();
 
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, 10);
+    wait = new WebDriverWait(driver, 5);
     litecartAdmin = new LitecartAdmin(driver);
     shop = new Shop(driver);
   }
@@ -119,7 +125,12 @@ public class TestBase {
     try {
       driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
       return driver.findElements(locator).size() > 0;
-    } finally {
+    } catch (InvalidSelectorException ex) {
+      throw ex;
+    } catch (NoSuchElementException ex) {
+      throw ex;
+    }
+    finally {
       driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
     }
   }
@@ -131,5 +142,12 @@ public class TestBase {
     } finally {
       driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
     }
+  }
+
+  public String getNewWindow (Set<String> oldWindows, WebDriver driver) {
+    wait.until(ExpectedConditions.anyWindowOtherThan(oldWindows));
+    Set<String> newWindows = driver.getWindowHandles();
+    newWindows.removeAll(oldWindows);
+    return newWindows.iterator().next();
   }
 }
