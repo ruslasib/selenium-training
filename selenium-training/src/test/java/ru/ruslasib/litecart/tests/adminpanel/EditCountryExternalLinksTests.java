@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import test.java.ru.ruslasib.litecart.ExpectedConditions;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class EditCountryExternalLinksTests extends TestBase {
     Set<String> oldWindows = driver.getWindowHandles();
     for (WebElement link : links) {
       link.click();
+      wait.until(ExpectedConditions.anyWindowOtherThan(oldWindows));
       String newWindow = getNewWindowId(oldWindows, driver);
       driver.switchTo().window(newWindow);
       assertNotEquals(mainWindow, newWindow);

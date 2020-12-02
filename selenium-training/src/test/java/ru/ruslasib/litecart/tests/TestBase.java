@@ -145,7 +145,6 @@ public class TestBase {
   }
 
   public String getNewWindowId(Set<String> oldWindows, WebDriver driver) {
-    wait.until(ExpectedConditions.anyWindowOtherThan(oldWindows));
     Set<String> newWindows = driver.getWindowHandles();
     newWindows.removeAll(oldWindows);
     return newWindows.iterator().next();
