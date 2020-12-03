@@ -35,7 +35,7 @@ public class AddNewProductTests extends TestBase {
     litecartAdmin.addNewProduct().general().selectQuantityUnit("pcs");
     litecartAdmin.addNewProduct().general().selectDeliveryStatus("3-5 days");
     litecartAdmin.addNewProduct().general().selectSoldOutStatus("Temporary sold out");
-    litecartAdmin.addNewProduct().general().uploadFiles("\\selenium-training\\src\\test\\java\\ru\\ruslasib\\resources\\duck.jpg");
+    litecartAdmin.addNewProduct().general().uploadFiles("\\selenium-training\\src\\test\\java\\ru\\ruslasib\\resource\\duck.jpg");
     litecartAdmin.addNewProduct().general().inputDateValidFrom("01/11/2020");
     litecartAdmin.addNewProduct().general().inputDateValidTo("31/10/2021");
 
