@@ -30,6 +30,6 @@ public class LoginPage extends Page {
   }
 
   public void clickLogin() {
-    click(By.cssSelector("button[inputName=login]"));
+    click(By.cssSelector("[name=login]"));
   }
 }
