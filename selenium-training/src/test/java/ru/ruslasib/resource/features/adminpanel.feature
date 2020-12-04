@@ -1,4 +1,4 @@
-
+@all
 Feature: adminpanel
   Tests for login to admin panel
 
