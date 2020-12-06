@@ -8,13 +8,17 @@ import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import test.java.ru.ruslasib.litecart.ExpectedConditions;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -27,8 +31,8 @@ public class TestBase {
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
 
-  @BeforeClass
-  public void start() {
+//  @BeforeClass
+//  public void start() {
     // uncomment to launch Chrome
 //    ChromeOptions options = new ChromeOptions();
 //    options.addArguments("start-maximized");
@@ -47,14 +51,19 @@ public class TestBase {
 //    driver = new FirefoxDriver(caps);
 
     // uncomment to launch Firefox
-    driver = new FirefoxDriver();
+//    driver = new FirefoxDriver();
+//
+//    System.out.println(((HasCapabilities) driver).getCapabilities());
+//    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//    driver.manage().window().maximize();
+//    wait = new WebDriverWait(driver, 5);
+//    litecartAdmin = new LitecartAdmin(driver);
+//    shop = new Shop(driver);
+//  }
 
-    System.out.println(((HasCapabilities) driver).getCapabilities());
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, 5);
-    litecartAdmin = new LitecartAdmin(driver);
-    shop = new Shop(driver);
+  @BeforeClass
+  public void startGrid() throws MalformedURLException {
+    driver = new RemoteWebDriver(new URL("http://192.168.0.15:4444/wd/hub"), new ChromeOptions());
   }
 
   @AfterClass
