@@ -17,10 +17,4 @@ public class MyFirstTest extends TestBase {
     driver.findElement(By.name("q")).sendKeys("webdriver");
     driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
   }
-
-  @AfterMethod
-  public void stop() {
-    driver.quit();
-    driver = null;
-  }
 }

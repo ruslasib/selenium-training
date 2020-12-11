@@ -1,5 +1,6 @@
 package test.java.ru.ruslasib.litecart.tests;
 
+import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,12 +12,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import test.java.ru.ruslasib.litecart.ExpectedConditions;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,17 +30,20 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-  public WebDriver driver;
+  public EventFiringWebDriver driver;
   protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
 
-//  @BeforeClass
-//  public void start() {
+  @BeforeClass
+  public void start() {
     // uncomment to launch Chrome
-//    ChromeOptions options = new ChromeOptions();
-//    options.addArguments("start-maximized");
-//    driver = new ChromeDriver(options);
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("start-maximized");
+    // приводим драйвер к классу, который отлавливает события
+    driver = new EventFiringWebDriver(new ChromeDriver(options));
+    // регистрируем нового слушателя событий
+    driver.register(new EventListener());
 
     // uncomment to launch Edge
 //    driver = new EdgeDriver(new EdgeDriverService.Builder()
@@ -50,26 +57,65 @@ public class TestBase {
 //    options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
 //    driver = new FirefoxDriver(caps);
 
-    // uncomment to launch Firefox
+//     uncomment to launch Firefox
 //    driver = new FirefoxDriver();
-//
-//    System.out.println(((HasCapabilities) driver).getCapabilities());
-//    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//    driver.manage().window().maximize();
-//    wait = new WebDriverWait(driver, 5);
-//    litecartAdmin = new LitecartAdmin(driver);
-//    shop = new Shop(driver);
-//  }
 
-  @BeforeClass
-  public void startGrid() throws MalformedURLException {
-    driver = new RemoteWebDriver(new URL("http://192.168.0.15:4444/wd/hub"), new ChromeOptions());
+    System.out.println(((HasCapabilities) driver).getCapabilities());
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//    driver.manage().window().maximize();
+    wait = new WebDriverWait(driver, 5);
+    litecartAdmin = new LitecartAdmin(driver);
+    shop = new Shop(driver);
   }
+
+//  @BeforeClass
+//  public void startGrid() throws MalformedURLException {
+//    DesiredCapabilities caps = new DesiredCapabilities();
+//    driver = new RemoteWebDriver(new URL("http://192.168.0.15:4444/wd/hub/"), new ChromeOptions());
+//  }
 
   @AfterClass
   public void stop() {
     driver.quit();
     driver = null;
+  }
+
+  // слушатель для логирования событий
+  class EventListener extends AbstractWebDriverEventListener {
+
+    @Override
+    public void beforeFindBy(By by, WebElement element, WebDriver driver) {
+      System.out.println("Locator " + by);
+    }
+
+    @Override
+    public void afterFindBy(By by, WebElement element, WebDriver driver) {
+      System.out.println("Locator " + by + " is found");
+    }
+
+    @Override
+    public void beforeClickOn(WebElement element, WebDriver driver) {
+      System.out.println("Element " + element + " is prepared to be clicked");
+    }
+
+    @Override
+    public void afterClickOn(WebElement element, WebDriver driver) {
+      System.out.println("Element " + element + " is clicked");
+    }
+
+    @Override
+    public void onException(Throwable throwable, WebDriver driver) {
+      System.out.println(throwable);
+      // снимаем скриншот события
+      File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+      File screenShot = new File("screenshot_" + System.currentTimeMillis() + ".png");
+      try {
+        Files.copy(tmp, screenShot);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      System.out.println("Screenshot name: " + screenShot.getName());
+    }
   }
 
   public void login(String login, String password) {
