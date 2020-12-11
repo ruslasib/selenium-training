@@ -1,6 +1,9 @@
 package test.java.ru.ruslasib.litecart.tests;
 
 import com.google.common.io.Files;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
@@ -31,15 +35,30 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
   public EventFiringWebDriver driver;
+  public BrowserMobProxy proxy;
   protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
 
   @BeforeClass
   public void start() {
+    // proxy
+    proxy = new BrowserMobProxyServer();
+    proxy.start(0);
+    Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+
+    // TODO: make traffic run through fiddler
+    Proxy proxy = new Proxy();
+    proxy.setHttpProxy("localhost:8866");
+    //
+
     // uncomment to launch Chrome
     ChromeOptions options = new ChromeOptions();
     options.addArguments("start-maximized");
+    options.setAcceptInsecureCerts(true);
+    options.merge(capabilities);
     // приводим драйвер к классу, который отлавливает события
     driver = new EventFiringWebDriver(new ChromeDriver(options));
     // регистрируем нового слушателя событий
