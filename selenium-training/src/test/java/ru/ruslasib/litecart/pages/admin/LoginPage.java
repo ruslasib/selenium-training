@@ -3,11 +3,12 @@ package test.java.ru.ruslasib.litecart.pages.admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 public class LoginPage extends Page {
 
-  WebDriver driver;
+  private WebDriver driver;
 
   public LoginPage(WebDriver driver) {
     super(driver);

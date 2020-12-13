@@ -13,9 +13,9 @@ public class Prices extends Page {
     this.driver = driver;
   }
 
-  public void inputPurchasePrice(String purchasePrice) {
+  public void inputPurchasePrice(int purchasePrice) {
     clear(By.name("purchase_price"));
-    type(By.name("purchase_price"), purchasePrice);
+    type(By.name("purchase_price"), Integer.toString(purchasePrice));
   }
 
   public void selectCurrency(String currency) {
@@ -23,8 +23,8 @@ public class Prices extends Page {
     chooseElementFromDropbox(By.cssSelector("[name=purchase_price_currency_code] option"), currency, "value");
   }
 
-  public void inputPriceUSD(String priceUSD) {
-    type(By.cssSelector("[type=text][name*=USD]"), priceUSD);
+  public void inputPriceUSD(int priceUSD) {
+    type(By.cssSelector("[type=text][name*=USD]"), Integer.toString(priceUSD));
   }
 
   public void inputPriceUSDIncludinTax(String priceUSDIncludingTax) {
@@ -32,17 +32,13 @@ public class Prices extends Page {
     type(By.cssSelector("[type=number][name*=USD]"), priceUSDIncludingTax);
   }
 
-  public void inputPriceEUR(String priceEUR) {
-    type(By.cssSelector("[type=text][name*=EUR]"), priceEUR);
+  public void inputPriceEUR(int priceEUR) {
+    type(By.cssSelector("[type=text][name*=EUR]"), Integer.toString(priceEUR));
   }
 
 
   public void inputPriceEURIncludingTax(String priceEURIncludingTax) {
     clear(By.cssSelector("[type=number][name*=EUR]"));
     type(By.cssSelector("[type=number][name*=EUR]"), priceEURIncludingTax);
-  }
-
-  public void save() {
-    click(By.name("save"));
   }
 }

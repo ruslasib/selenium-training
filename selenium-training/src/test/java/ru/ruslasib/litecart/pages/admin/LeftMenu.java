@@ -1,8 +1,10 @@
-package test.java.ru.ruslasib.litecart.pages.admin.main;
+package test.java.ru.ruslasib.litecart.pages.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import test.java.ru.ruslasib.litecart.pages.Page;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 
 public class LeftMenu extends Page {
@@ -21,6 +23,8 @@ public class LeftMenu extends Page {
 
   public void countries() {
     click(By.cssSelector("[href$=countries]"));
+    wait.until(presenceOfElementLocated(By.tagName("h1")));
+
   }
 
   public void customers() {

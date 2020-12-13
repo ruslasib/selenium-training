@@ -35,11 +35,10 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
   public EventFiringWebDriver driver;
+  public WebDriverWait wait;
   public BrowserMobProxy proxy;
-  protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
-  public DataProviders dataProviders;
 
   @BeforeClass
   public void start() {
@@ -82,14 +81,13 @@ public class TestBase {
     driver = new EventFiringWebDriver(new FirefoxDriver(options));
 
     // common for all browsers
+    wait = new WebDriverWait(driver, 5);
     driver.register(new EventListener());
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, 5);
     litecartAdmin = new LitecartAdmin(driver);
     shop = new Shop(driver);
-    dataProviders = new DataProviders();
   }
 
 //  @BeforeClass

@@ -2,6 +2,7 @@ package test.java.ru.ruslasib.litecart.pages.admin.addNewProduct;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 public class Information extends Page {
@@ -14,8 +15,7 @@ public class Information extends Page {
   }
 
   public void selectManufacturer(String manufacturer) {
-    click(By.cssSelector("[name=manufacturer_id]"));
-    chooseElementFromDropbox(By.cssSelector("[name=manufacturer_id] option"), manufacturer, "textContent");
+    select(By.cssSelector("[name=manufacturer_id]"), manufacturer);
   }
 
   public void inputKeywords(String keywords) {

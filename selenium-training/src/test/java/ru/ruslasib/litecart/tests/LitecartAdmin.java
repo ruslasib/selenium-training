@@ -1,14 +1,16 @@
 package test.java.ru.ruslasib.litecart.tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.pages.admin.*;
 import test.java.ru.ruslasib.litecart.pages.admin.addNewProduct.AddNewProduct;
-import test.java.ru.ruslasib.litecart.pages.admin.main.LeftMenu;
+import test.java.ru.ruslasib.litecart.pages.admin.LeftMenu;
 import test.java.ru.ruslasib.litecart.pages.shop.HomePage;
 
 public class LitecartAdmin {
 
   private WebDriver driver;
+  private WebDriverWait wait;
   private LoginPage loginPage;
   private HomePage homePage;
   private LeftMenu leftMenu;
@@ -19,13 +21,16 @@ public class LitecartAdmin {
   private Catalog catalog;
   private AddNewProduct addNewProduct;
   private EditProduct editProduct;
+  private SubmitPanel submitPanel;
 
   public LitecartAdmin(WebDriver driver) {
     this.driver = driver;
+    this.wait = wait;
   }
 
   public void launch() {
     driver.get("http://localhost/litecart/admin/login.php/");
+    wait = new WebDriverWait(driver, 5);
     loginPage = new LoginPage(driver);
     homePage = new HomePage(driver);
     leftMenu = new LeftMenu(driver);
@@ -34,8 +39,9 @@ public class LitecartAdmin {
     geoZones = new GeoZones(driver);
     editGeoZone = new EditGeoZone(driver);
     catalog = new Catalog(driver);
-    addNewProduct = new AddNewProduct(driver);
+    addNewProduct = new AddNewProduct(driver, wait);
     editProduct = new EditProduct(driver);
+    submitPanel = new SubmitPanel(driver);
   }
 
   public LoginPage loginPage() {
@@ -76,5 +82,9 @@ public class LitecartAdmin {
 
   public EditProduct editProduct() {
     return editProduct;
+  }
+
+  public SubmitPanel submitPanel() {
+    return submitPanel;
   }
 }

@@ -12,8 +12,7 @@ import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotEquals;
 
 public class EditCountryExternalLinksTests extends TestBase {
 
@@ -26,7 +25,6 @@ public class EditCountryExternalLinksTests extends TestBase {
   @Test
   public void testExternalLinks() {
     litecartAdmin.leftMenu().countries();
-    wait.until(presenceOfElementLocated(By.tagName("h1")));
     litecartAdmin.countries().editCountry("Macedonia");
     List<WebElement> links = driver.findElements(By.cssSelector(".fa-external-link"));
     String mainWindow = driver.getWindowHandle();

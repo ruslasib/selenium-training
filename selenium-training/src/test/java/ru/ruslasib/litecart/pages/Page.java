@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.tests.ParametersHolder;
 
 import java.util.List;
@@ -12,6 +14,12 @@ import java.util.concurrent.TimeUnit;
 public class Page {
 
   private WebDriver driver;
+  protected WebDriverWait wait;
+
+  public Page(WebDriver driver, WebDriverWait wait) {
+    this.driver = driver;
+    this.wait = wait;
+  }
 
   public Page(WebDriver driver) {
     this.driver = driver;
@@ -80,5 +88,9 @@ public class Page {
     } finally {
       driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
     }
+  }
+
+  public void select(By locator, String selectedOption) {
+    new Select(driver.findElement(locator)).selectByVisibleText(selectedOption);
   }
 }
