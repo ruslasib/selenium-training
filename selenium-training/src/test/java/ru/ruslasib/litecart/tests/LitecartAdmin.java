@@ -27,7 +27,6 @@ public class LitecartAdmin {
 
   public LitecartAdmin(WebDriver driver) {
     this.driver = driver;
-    this.wait = wait;
   }
 
   public void launch() {

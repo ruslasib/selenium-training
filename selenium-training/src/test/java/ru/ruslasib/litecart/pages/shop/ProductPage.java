@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 import java.util.List;
@@ -15,10 +16,12 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElements
 public class ProductPage extends Page {
 
   private WebDriver driver;
+  private WebDriverWait wait;
 
-  public ProductPage(WebDriver driver) {
+  public ProductPage(WebDriver driver, WebDriverWait wait) {
     super(driver);
     this.driver = driver;
+    this.wait = wait;
     PageFactory.initElements(driver, this);
   }
 

@@ -1,17 +1,14 @@
 package test.java.ru.ruslasib.litecart.tests.shop;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 import test.java.ru.ruslasib.litecart.tests.adminpanel.StaticDataProvider;
 
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
 import static org.testng.Assert.assertTrue;
 
 public class AddToCartTests extends TestBase {
@@ -24,7 +21,6 @@ public class AddToCartTests extends TestBase {
 
   @Test(dataProvider = "quantityOfProducts", dataProviderClass = StaticDataProvider.class)
   public void testAddToAndRemoveFromCart(int productsQuantity) {
-    // добавляем товары в корзину
     for (int i = 0; i < productsQuantity; i++) {
       shop.homePage().goToHomePage();
       shop.homePage().addToCartFirstMostPopularProduct();
@@ -36,7 +32,6 @@ public class AddToCartTests extends TestBase {
       assertThat(quantity.getAttribute("textContent"), equalTo(Integer.toString(quantityAfter)));
     }
 
-    // переходим к корзину и удаляем товары
     shop.cart().checkoutButton();
     shop.productPage().removeAllProductsFromCart();
     assertTrue(isElementNotPresent(shop.productPage().allOrderedItems()));
