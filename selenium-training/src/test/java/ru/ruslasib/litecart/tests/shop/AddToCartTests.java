@@ -3,9 +3,11 @@ package test.java.ru.ruslasib.litecart.tests.shop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -14,6 +16,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import static org.testng.Assert.assertTrue;
 
 public class AddToCartTests extends TestBase {
+
+//  @DataProvider(name = "productToOrder")
+//  private Iterator<Object[]> productQuantity() {
+//
+//  }
 
   @BeforeClass
   public void launch() {

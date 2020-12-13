@@ -3,6 +3,8 @@ package test.java.ru.ruslasib.litecart.pages.shop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 import java.util.List;
@@ -14,7 +16,11 @@ public class HomePage extends Page {
   public HomePage(WebDriver driver) {
     super(driver);
     this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
+
+  @FindBy(css = "#logotype-wrapper a")
+  private WebElement homePageLogo;
 
   public List<WebElement> mostPopularItems() {
     return driver.findElements(By.cssSelector("#box-most-popular li"));
@@ -29,7 +35,7 @@ public class HomePage extends Page {
   }
 
   public void goToHomePage() {
-    driver.findElement(By.cssSelector("#logotype-wrapper a")).click();
+    click(homePageLogo);
   }
 
   public void createAccount() {
