@@ -2,6 +2,9 @@ package test.java.ru.ruslasib.litecart.pages.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -11,14 +14,18 @@ public class LeftMenu extends Page {
 
   public LeftMenu(WebDriver driver) {
     super(driver);
+    PageFactory.initElements(driver, this);
   }
+
+  @FindBy(css = "[href*=catalog]")
+  private WebElement catalogBtn;
 
   public void appearance() {
     click(By.cssSelector("[href$=template]"));
   }
 
   public void catalog() {
-    click(By.cssSelector("[href*=catalog]"));
+    click(catalogBtn);
   }
 
   public void countries() {

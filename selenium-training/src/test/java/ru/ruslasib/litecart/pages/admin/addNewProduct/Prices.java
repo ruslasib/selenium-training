@@ -2,6 +2,9 @@ package test.java.ru.ruslasib.litecart.pages.admin.addNewProduct;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 public class Prices extends Page {
@@ -11,34 +14,34 @@ public class Prices extends Page {
   public Prices(WebDriver driver) {
     super(driver);
     this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
 
+  @FindBy(name = "purchase_price")
+  private WebElement purchasePriceField;
+
+  @FindBy(name = "purchase_price_currency_code")
+  private WebElement purchasePriceCurrency;
+
+  @FindBy(css = "[type=text][name*=USD]")
+  private WebElement priceUSDField;
+
+  @FindBy(css = "[type=text][name*=EUR]")
+  private WebElement priceEURField;
+
   public void inputPurchasePrice(int purchasePrice) {
-    clear(By.name("purchase_price"));
-    type(By.name("purchase_price"), Integer.toString(purchasePrice));
+    typeIn(purchasePriceField, Integer.toString(purchasePrice));
   }
 
   public void selectCurrency(String currency) {
-    click(By.name("purchase_price_currency_code"));
-    chooseElementFromDropbox(By.cssSelector("[name=purchase_price_currency_code] option"), currency, "value");
+    select(purchasePriceCurrency, currency);
   }
 
   public void inputPriceUSD(int priceUSD) {
-    type(By.cssSelector("[type=text][name*=USD]"), Integer.toString(priceUSD));
-  }
-
-  public void inputPriceUSDIncludinTax(String priceUSDIncludingTax) {
-    clear(By.cssSelector("[type=number][name*=USD]"));
-    type(By.cssSelector("[type=number][name*=USD]"), priceUSDIncludingTax);
+    typeIn(priceUSDField, Integer.toString(priceUSD));
   }
 
   public void inputPriceEUR(int priceEUR) {
-    type(By.cssSelector("[type=text][name*=EUR]"), Integer.toString(priceEUR));
-  }
-
-
-  public void inputPriceEURIncludingTax(String priceEURIncludingTax) {
-    clear(By.cssSelector("[type=number][name*=EUR]"));
-    type(By.cssSelector("[type=number][name*=EUR]"), priceEURIncludingTax);
+    typeIn(priceEURField, Integer.toString(priceEUR));
   }
 }

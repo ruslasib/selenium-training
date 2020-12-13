@@ -40,7 +40,7 @@ public class AddNewProductTests extends TestBase {
             .withHeadTitle("head title of super duck")
             .withMetaDescription("meta description of super duck")
             .withPurchasePrice(12)
-            .withCurrency("EUR")
+            .withCurrency("Euros")
             .withPriceUSD(17)
             .withPriceEUR(15)});
     return products.iterator();
@@ -86,7 +86,7 @@ public class AddNewProductTests extends TestBase {
     litecartAdmin.submitPanel().save();
 
     litecartAdmin.catalog().chooseProduct(duck.getName());
-    assertThat(litecartAdmin.editProduct().name(), equalTo(duck.getName()));
-    assertThat(litecartAdmin.editProduct().code(), equalTo(duck.getCode()));
+    assertThat(litecartAdmin.editProduct().nameFieldValue(), equalTo(duck.getName()));
+    assertThat(litecartAdmin.editProduct().codeFieldValue(), equalTo(duck.getCode()));
   }
 }

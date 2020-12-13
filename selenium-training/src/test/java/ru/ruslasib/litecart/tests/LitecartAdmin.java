@@ -1,6 +1,8 @@
 package test.java.ru.ruslasib.litecart.tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.pages.admin.*;
 import test.java.ru.ruslasib.litecart.pages.admin.addNewProduct.AddNewProduct;

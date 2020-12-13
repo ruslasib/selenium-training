@@ -3,6 +3,8 @@ package test.java.ru.ruslasib.litecart.pages.admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 import java.util.List;
@@ -14,10 +16,17 @@ public class Catalog extends Page {
   public Catalog(WebDriver driver) {
     super(driver);
     this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
 
+  @FindBy(css = "[href$=edit_product]")
+  private WebElement addNewProductBtn;
+
+  @FindBy(css = ".row td:nth-of-type(3) [href*=product_id]")
+  private List<WebElement> allProducts;
+
   public void addNewProduct() {
-    click(By.cssSelector("[href$=edit_product]"));
+    click(addNewProductBtn);
   }
 
   public void chooseCategory(String defaultCategory) {
@@ -30,8 +39,7 @@ public class Catalog extends Page {
   }
 
   public void chooseProduct(String productName) {
-    List<WebElement> products = driver.findElements(By.cssSelector(".row td:nth-of-type(3) [href*=product_id]"));
-    for (WebElement product : products) {
+    for (WebElement product : allProducts) {
       if (product.getAttribute("textContent").equals(productName)) {
         product.click();
         return;

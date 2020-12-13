@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.ru.ruslasib.litecart.tests.ParametersHolder;
@@ -29,8 +30,22 @@ public class Page {
     driver.findElement(locator).click();
   }
 
+  public void click(WebElement webElement) {
+    webElement.click();
+  }
+
   public void type(By locator, String inputText) {
+    driver.findElement(locator).clear();
     driver.findElement(locator).sendKeys(inputText);
+  }
+
+  public void typeIn(WebElement webElement, String inputText) {
+    webElement.clear();
+    webElement.sendKeys(inputText);
+  }
+
+  public void typeIn(WebElement webElement, int inputText) {
+    webElement.sendKeys(Integer.toString(inputText));
   }
 
   public void clear(By locator) {
@@ -51,12 +66,11 @@ public class Page {
     }
   }
 
-  public void chooseCheckbox(By locator, String folderName, String textSource) {
-    List<WebElement> folders = driver.findElements(locator);
-    for (WebElement folder : folders) {
-      if ((folder.getAttribute(textSource).equals(folderName) && folder.getAttribute("checked") == null)
-              || (folder.getAttribute("checked") != null)) {
-        folder.click();
+  public void chooseCheckbox(List<WebElement> elements, String folderName, String textSource) {
+    for (WebElement element : elements) {
+      if ((element.getAttribute(textSource).equals(folderName) && element.getAttribute("checked") == null)
+              || (element.getAttribute("checked") != null)) {
+        element.click();
       }
     }
   }
@@ -71,10 +85,10 @@ public class Page {
     }
   }
 
-  public void inputDate(By locator, String date) {
+  public void inputDate(WebElement webElement, String date) {
     Actions action = new Actions(driver);
     System.out.println(date.replaceAll("^0-9", ""));
-    action.moveToElement(driver.findElement(locator))
+    action.moveToElement(webElement)
             .moveByOffset(11, 11)
             .click()
             .sendKeys(date.replaceAll("/", ""))
@@ -90,7 +104,7 @@ public class Page {
     }
   }
 
-  public void select(By locator, String selectedOption) {
-    new Select(driver.findElement(locator)).selectByVisibleText(selectedOption);
+  public void select(WebElement element, String selectedOption) {
+    new Select(element).selectByVisibleText(selectedOption);
   }
 }
