@@ -35,6 +35,6 @@ public class AddToCartTests extends TestBase {
     shop.cart().checkoutButton();
     shop.productPage().removeAllProductsFromCart();
     assertTrue(isElementNotPresent(shop.productPage().allOrderedItems()));
-    assertThat(shop.cart().noItemsInYourCartText(), equalTo("There are no items in your cart."));
+    assertThat(shop.productPage().noItemsInYourCartText(), equalTo("There are no items in your cart."));
   }
 }

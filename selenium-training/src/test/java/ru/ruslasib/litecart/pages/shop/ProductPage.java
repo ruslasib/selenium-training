@@ -40,6 +40,9 @@ public class ProductPage extends Page {
   @FindBy(css = ".shortcuts > li")
   private List<WebElement> allShortcuts;
 
+  @FindBy(css = "#checkout-cart-wrapper em")
+  private WebElement noItemsInYourCart;
+
   public String productName() {
     return driver.findElement(By.cssSelector("h1.title")).getAttribute("textContent");
   }
@@ -84,5 +87,9 @@ public class ProductPage extends Page {
       wait.until(numberOfElementsToBeLessThan(By.cssSelector("#box-checkout-summary td.item"), items.size()));
       items = allOrderedItems();
     }
+  }
+
+  public String noItemsInYourCartText() {
+    return noItemsInYourCart.getAttribute("textContent");
   }
 }
