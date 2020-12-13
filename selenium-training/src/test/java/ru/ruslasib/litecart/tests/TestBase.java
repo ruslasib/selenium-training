@@ -39,6 +39,7 @@ public class TestBase {
   protected WebDriverWait wait;
   protected LitecartAdmin litecartAdmin;
   protected Shop shop;
+  public DataProviders dataProviders;
 
   @BeforeClass
   public void start() {
@@ -55,14 +56,12 @@ public class TestBase {
     //
 
     // uncomment to launch Chrome
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("start-maximized");
-    options.setAcceptInsecureCerts(true);
-    options.merge(capabilities);
+//    ChromeOptions options = new ChromeOptions();
+//    options.setAcceptInsecureCerts(true);
+//    options.merge(capabilities);
     // приводим драйвер к классу, который отлавливает события
-    driver = new EventFiringWebDriver(new ChromeDriver(options));
+//    driver = new EventFiringWebDriver(new ChromeDriver(options));
     // регистрируем нового слушателя событий
-    driver.register(new EventListener());
 
     // uncomment to launch Edge
 //    driver = new EdgeDriver(new EdgeDriverService.Builder()
@@ -77,14 +76,20 @@ public class TestBase {
 //    driver = new FirefoxDriver(caps);
 
 //     uncomment to launch Firefox
-//    driver = new FirefoxDriver();
+    FirefoxOptions options = new FirefoxOptions();
+    options.addArguments();
+    options.merge(capabilities);
+    driver = new EventFiringWebDriver(new FirefoxDriver(options));
 
+    // common for all browsers
+    driver.register(new EventListener());
     System.out.println(((HasCapabilities) driver).getCapabilities());
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//    driver.manage().window().maximize();
+    driver.manage().window().maximize();
     wait = new WebDriverWait(driver, 5);
     litecartAdmin = new LitecartAdmin(driver);
     shop = new Shop(driver);
+    dataProviders = new DataProviders();
   }
 
 //  @BeforeClass
