@@ -212,10 +212,33 @@ public class TestBase {
     }
   }
 
+  protected boolean isElementPresent(List<WebElement> webElements) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return webElements.size() > 0;
+    } catch (InvalidSelectorException ex) {
+      throw ex;
+    } catch (NoSuchElementException ex) {
+      throw ex;
+    }
+    finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
+  }
+
   protected boolean isElementNotPresent(By locator) {
     try {
       driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
       return driver.findElements(locator).size() == 0;
+    } finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
+  }
+
+  protected boolean isElementNotPresent(List<WebElement> webElements) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return webElements.size() == 0;
     } finally {
       driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
     }

@@ -22,8 +22,11 @@ public class HomePage extends Page {
   @FindBy(css = "#logotype-wrapper a")
   private WebElement homePageLogo;
 
-  public List<WebElement> mostPopularItems() {
-    return driver.findElements(By.cssSelector("#box-most-popular li"));
+  @FindBy(css = "#box-most-popular li")
+  private List<WebElement> mostPopularProducts;
+
+  public void addToCartFirstMostPopularProduct() {
+    mostPopularProducts.get(0).click();
   }
 
   public List<WebElement> campaignsItems() {
@@ -62,9 +65,5 @@ public class HomePage extends Page {
     type(By.name("email"), login);
     type(By.name("password"), password);
     click(By.name("login"));
-  }
-
-  public void checkout() {
-    click(By.cssSelector(".link[href$=checkout]"));
   }
 }

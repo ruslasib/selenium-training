@@ -16,7 +16,7 @@ public class AddNewProductTests extends TestBase {
     litecartAdmin.loginPage().login("admin", "admin");
   }
 
-  @Test(dataProvider = "testNewProductAddition", dataProviderClass = DataProvider.class)
+  @Test(dataProvider = "testNewProductAddition", dataProviderClass = StaticDataProvider.class)
   public void testNewProductAddition(Product duck) {
     litecartAdmin.leftMenu().catalog();
     litecartAdmin.catalog().addNewProduct();

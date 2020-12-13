@@ -3,9 +3,14 @@ package test.java.ru.ruslasib.litecart.pages.shop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import test.java.ru.ruslasib.litecart.pages.Page;
 
 import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeLessThan;
 
 public class ProductPage extends Page {
 
@@ -14,7 +19,23 @@ public class ProductPage extends Page {
   public ProductPage(WebDriver driver) {
     super(driver);
     this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
+
+  @FindBy(css = "[name^=options]")
+  private WebElement sizeField;
+
+  @FindBy(name = "add_cart_product")
+  private WebElement addToCart;
+
+  @FindBy(name = "remove_cart_item")
+  private WebElement removeBtn;
+
+  @FindBy(css = "#box-checkout-summary td.item")
+  private List<WebElement> allOrderedItems;
+
+  @FindBy(css = ".shortcuts > li")
+  private List<WebElement> allShortcuts;
 
   public String productName() {
     return driver.findElement(By.cssSelector("h1.title")).getAttribute("textContent");
@@ -28,19 +49,37 @@ public class ProductPage extends Page {
     return driver.findElement(By.cssSelector("#box-product .price-wrapper strong"));
   }
 
-  public void addToCart() {
-    click(By.name("add_cart_product"));
+  public void addToCartButton() {
+    click(addToCart);
   }
 
   public void selectSize() {
     if (isElementPresent(By.cssSelector("[name^=options]"))) {
-      click(By.cssSelector("[name^=options]"));
-      List<WebElement> options = driver.findElements(By.cssSelector("[name^=options] option"));
-      options.get(1).click();
+      new Select(sizeField).selectByIndex(1);
     }
   }
 
-  public WebElement quantity() {
-    return driver.findElement(By.cssSelector("#cart-wrapper .quantity"));
+  public void removeButton() {
+    click(removeBtn);
+  }
+
+  public List<WebElement> allOrderedItems() {
+    return allOrderedItems;
+  }
+
+  public List<WebElement> allShortcuts() {
+    return allShortcuts;
+  }
+
+  public void removeAllProductsFromCart() {
+    List<WebElement> items = allOrderedItems();
+    while (! items.isEmpty()) {
+      if (isElementPresent(allShortcuts())) {
+        allShortcuts().get(0).click();
+      }
+      removeButton();
+      wait.until(numberOfElementsToBeLessThan(By.cssSelector("#box-checkout-summary td.item"), items.size()));
+      items = allOrderedItems();
+    }
   }
 }

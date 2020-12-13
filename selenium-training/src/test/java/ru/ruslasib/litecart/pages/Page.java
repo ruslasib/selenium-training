@@ -104,6 +104,15 @@ public class Page {
     }
   }
 
+  public boolean isElementPresent(List<WebElement> webElements) {
+    try {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      return webElements.size() > 0;
+    } finally {
+      driver.manage().timeouts().implicitlyWait(ParametersHolder.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    }
+  }
+
   public void select(WebElement element, String selectedOption) {
     new Select(element).selectByVisibleText(selectedOption);
   }
