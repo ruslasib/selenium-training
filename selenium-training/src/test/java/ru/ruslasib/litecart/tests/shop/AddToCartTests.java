@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
-import test.java.ru.ruslasib.litecart.tests.adminpanel.StaticDataProvider;
+import test.java.ru.ruslasib.litecart.tests.StaticDataProvider;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -3,6 +3,7 @@ package test.java.ru.ruslasib.litecart.tests.adminpanel;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.ru.ruslasib.litecart.model.Product;
+import test.java.ru.ruslasib.litecart.tests.StaticDataProvider;
 import test.java.ru.ruslasib.litecart.tests.TestBase;
 
 import static org.hamcrest.CoreMatchers.equalTo;

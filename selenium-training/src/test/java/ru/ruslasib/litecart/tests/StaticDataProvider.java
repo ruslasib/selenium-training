@@ -1,4 +1,4 @@
-package test.java.ru.ruslasib.litecart.tests.adminpanel;
+package test.java.ru.ruslasib.litecart.tests;
 
 import org.testng.annotations.DataProvider;
 import test.java.ru.ruslasib.litecart.model.Product;
