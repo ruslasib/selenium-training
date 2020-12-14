@@ -7,6 +7,9 @@ import test.java.ru.ruslasib.litecart.pages.shop.CreateAccount;
 import test.java.ru.ruslasib.litecart.pages.shop.HomePage;
 import test.java.ru.ruslasib.litecart.pages.shop.ProductPage;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class Shop {
 
   private WebDriver driver;
@@ -48,5 +51,16 @@ public class Shop {
 
   public Cart cart() {
     return cart;
+  }
+
+  public void addProductsToCartInAmountOf(int productsQuantity) {
+    for (int i = 0; i < productsQuantity; i++) {
+      homePage().goToHomePage();
+      homePage().addToCartFirstMostPopularProduct();
+      productPage().selectSize();
+      int quantityAfter = cart().quantityValue() + 1;
+      productPage().addToCartButton();
+      assertThat(cart().quantityValue(), equalTo(quantityAfter));
+    }
   }
 }

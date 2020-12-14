@@ -11,6 +11,7 @@ import test.java.ru.ruslasib.litecart.pages.Page;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
 import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeLessThan;
 
 public class ProductPage extends Page {
@@ -56,7 +57,10 @@ public class ProductPage extends Page {
   }
 
   public void addToCartButton() {
+    Cart cart = new Cart(driver);
+    String quantityAfter = Integer.toString(Integer.parseInt(cart.quantity().getAttribute("textContent")) + 1);
     click(addToCart);
+    wait.until(attributeToBe(cart.quantity(), "textContent", quantityAfter));
   }
 
   public void selectSize() {
